@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>求人一覧</title>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="../js/IpAddress.js"></script>
+<script  type="text/javascript" src="kyujinSignage.js" charset="UTF-8"></script>
+<link rel="stylesheet" type="text/css" href="../css/kyujin.css">
+</head>
+<!--<body id="body" style="background-color : #0000FF">-->
+<body>
+    <p id="kyujinTitle">新着求人情報</p>
+	<p id="kyujinMessage">ここに説明書き</p>
+
+	<div class="businessSignage">
+		<div class="businessArea1">
+			<div class="businessItem1">
+				<p class="businessText1">建設業</p>
+			</div>
+			<div class="businessItem2">
+				<p class="businessText2">メーカー</p>
+			</div>
+		</div>
+		<div class="businessArea2">
+			<div class="businessItem3">
+				<p class="businessText3">商社</p>
+			</div>
+			<div class="businessItem4">
+				<p class="businessText4">流通</p>
+			</div>
+		</div>
+		<div class="businessArea3">
+			<div class="businessItem5">
+				<p class="businessText5">金融</p>
+			</div>
+			<div class="businessItem6">
+				<p class="businessText6">情報通信</p>
+			</div>
+		</div>
+		<div class="businessArea4">
+			<div class="businessItem7">
+				<p class="businessText7">サービス</p>
+			</div>
+			<div class="businessItem8">
+				<p class="businessText8">その他</p>
+			</div>
+		</div>
+	</div>
+	<!--<div class="kyujin">
+		<ul class="kyujinList"></ul>
+	</div>-->
+    <div class="kyujinSignage">
+	<ol>
+	<li class="kyujinText1"></li>
+	<ul><li class="kyujinCategory1"></li></ul>
+	<li class="kyujinText2"></li>
+	<ul><li class="kyujinCategory2"></li></ul>
+	<li class="kyujinText3"></li>
+	<ul><li class="kyujinCategory3"></li></ul>
+	<li class="kyujinText4"></li>
+	<ul><li class="kyujinCategory4"></li></ul>
+	<li class="kyujinText5"></li>
+	<ul><li class="kyujinCategory5"></li></ul>
+	<li class="kyujinText6"></li>
+	<ul><li class="kyujinCategory6"></li></ul>
+	<li class="kyujinText7"></li>
+	<ul><li class="kyujinCategory7"></li></ul>
+	<li class="kyujinText8"></li>
+	<ul><li class="kyujinCategory8"></li></ul>
+	<li class="kyujinText9"></li>
+	<ul><li class="kyujinCategory9"></li></ul>
+	<li class="kyujinText10"></li>
+	<ul><li class="kyujinCategory10"></li></ul>
+	</ol>
+    </div>
+
+    <div class="kyujinDetailSignage">
+	<li id="company"></li>
+	<ul><li id="business"></li></ul>
+	<ul><li id="place"></li></ul>
+	<ul><li id="content"></li></ul>
+	<ul><li id="tel"></li></ul>
+	<ul><li id="url"></li></ul>
+    </div>
+</body>
+</html>

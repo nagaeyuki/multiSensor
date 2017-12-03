@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>就職支援スケジュール</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>　
+	<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="../js/IpAddress.js"></script>
+	<script src="../js/header.js"></script>
+
+	<script type="text/javascript" src="calendarSignage.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../css/calendar.css">
+	<link rel="stylesheet" type="text/css" href="../base.css">
+</head>
+
+<body>
+	<div id="container">
+		<header id="header"></header>
+		<div class="careerTitle">就職支援スケジュール一覧</div>
+		<div class="contents">
+			<div class="scroll">
+				<h1 class="month" id="c4">4月</h1>
+				<h1 class="month" id="c5">5月</h1>
+				<h1 class="month" id="c6">6月</h1>
+				<h1 class="month" id="c7">7月</h1>
+				<h1 class="month" id="c8">8月</h1>
+				<h1 class="month" id="c9">9月</h1>
+				<h1 class="month" id="c10">10月</h1>
+				<h1 class="month" id="c11">11月</h1>
+				<h1 class="month" id="c12">12月</h1>
+				<h1 class="month" id="c1">1月</h1>
+				<h1 class="month" id="c2">2月</h1>
+				<h1 class="month" id="c3">3月</h1>
+			</div>
+		</div>
+	<img id="arrow" src="/picture/arrow2.png" />
+		<p id="induction">詳しい内容や予約は相談カウンターにどうぞ</p>
+
+</div>
+</body>
+</html>
+<!-- <h1 class="month" id="c5">5月</h1>
+                <div class="base">
+                    <p id="season2"></p>
+                    <p id="courseName2"></p>
+                    <p id="place2"></p>
+                    <p id="time2" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season3"></p>
+                    <p id="courseName3"></p>
+                    <p id="place3"></p>
+                    <p id="time3" class="line"></p>
+                </div>
+                <h1 class="month" id="c6">6月</h1>
+                <div class="base">
+                    <p id="season4"></p>
+                    <p id="courseName4"></p>
+                    <p id="place4"></p>
+                    <p id="time4" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season5"></p>
+                    <p id="courseName5"></p>
+                    <p id="place5"></p>
+                    <p id="time5" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season6"></p>
+                    <p id="courseName6"></p>
+                    <p id="place6"></p>
+                    <p id="time6" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season7"></p>
+                    <p id="courseName7"></p>
+                    <p id="place7"></p>
+                    <p id="time7" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season8"></p>
+                    <p id="courseName8"></p>
+                    <p id="place8"></p>
+                    <p id="time8" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season9"></p>
+                    <p id="courseName9"></p>
+                    <p id="place9"></p>
+                    <p id="time9" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c7">7月</h1>
+                <div class="base">
+                    <p id="season10"></p>
+                    <p id="courseName10"></p>
+                    <p id="place10"></p>
+                    <p id="time10" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season11"></p>
+                    <p id="courseName11"></p>
+                    <p id="place11"></p>
+                    <p id="time11" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season12"></p>
+                    <p id="courseName12"></p>
+                    <p id="place12"></p>
+                    <p id="time12" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season13"></p>
+                    <p id="courseName13"></p>
+                    <p id="place13"></p>
+                    <p id="time13" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season14"></p>
+                    <p id="courseName14"></p>
+                    <p id="place14"></p>
+                    <p id="time14" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c8">8月</h1>
+                <div class="base">
+                    <p id="season15"></p>
+                    <p id="courseName15"></p>
+                    <p id="place15"></p>
+                    <p id="time15" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season16"></p>
+                    <p id="courseName16"></p>
+                    <p id="place16"></p>
+                    <p id="time16" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c9">9月</h1>
+
+                <h1 class="month" id="c10">10月</h1>
+                <div class="base">
+                    <p id="season17"></p>
+                    <p id="courseName17"></p>
+                    <p id="place17"></p>
+                    <p id="time17" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c11">11月</h1>
+                <div class="base">
+                    <p id="season18"></p>
+                    <p id="courseName18"></p>
+                    <p id="place18"></p>
+                    <p id="time18" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season19"></p>
+                    <p id="courseName19"></p>
+                    <p id="place19"></p>
+                    <p id="time19" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season20"></p>
+                    <p id="courseName20"></p>
+                    <p id="place20"></p>
+                    <p id="time20" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c12">12月</h1>
+                <div class="base">
+                    <p id="season21"></p>
+                    <p id="courseName21"></p>
+                    <p id="place21"></p>
+                    <p id="time21" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season22"></p>
+                    <p id="courseName22"></p>
+                    <p id="place22"></p>
+                    <p id="time22" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season23"></p>
+                    <p id="courseName23"></p>
+                    <p id="place23"></p>
+                    <p id="time23" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c1">1月</h1>
+                <div class="base">
+                    <p id="season24"></p>
+                    <p id="courseName24"></p>
+                    <p id="place24"></p>
+                    <p id="time24" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season25"></p>
+                    <p id="courseName25"></p>
+                    <p id="place25"></p>
+                    <p id="time25" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c2">2月</h1>
+                <div class="base">
+                    <p id="season26"></p>
+                    <p id="courseName26"></p>
+                    <p id="place26"></p>
+                    <p id="time26" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season27"></p>
+                    <p id="courseName27"></p>
+                    <p id="place27"></p>
+                    <p id="time27" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season28"></p>
+                    <p id="courseName28"></p>
+                    <p id="place28"></p>
+                    <p id="time28" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season29"></p>
+                    <p id="courseName29"></p>
+                    <p id="place29"></p>
+                    <p id="time29" class="line"></p>
+                </div>
+
+                <h1 class="month" id="c3">3月</h1>
+                <div class="base">
+                    <p id="season30"></p>
+                    <p id="courseName30"></p>
+                    <p id="place30"></p>
+                    <p id="time30" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season31"></p>
+                    <p id="courseName31"></p>
+                    <p id="place31"></p>
+                    <p id="time31" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season32"></p>
+                    <p id="courseName32"></p>
+                    <p id="place32"></p>
+                    <p id="time32" class="line"></p>
+                </div>
+                <div class="base">
+                    <p id="season33"></p>
+                    <p id="courseName33"></p>
+                    <p id="place33"></p>
+                    <p id="time33" class="line"></p>
+                </div> -->

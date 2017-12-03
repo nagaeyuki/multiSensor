@@ -1,0 +1,39 @@
+#test {
+    position: relative;
+}
+
+#canvas, #Imageframe {
+    position: absolute;
+}
+
+img{
+  position: absolute;
+  width: 512px;
+  height: 424px;
+  transform: scale(0.5);
+opacity: 0;
+}
+/*canvas{
+  position:absolute;
+}*/
+.colorImage{
+  position: absolute;
+  width: 512px;
+  height: 424px;
+  transform: scale(0.5);
+}
+#gray {
+    /*top: -256px;
+left:-212px;*/
+    /*//人がいないときは透明にする*/
+}
+
+#Imageframe {
+    width: 512px;
+    height: 424px;
+}
+
+#info {
+    position: relative;
+    top: 450px;
+}

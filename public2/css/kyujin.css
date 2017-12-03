@@ -1,0 +1,658 @@
+body {
+	//background-color: #00ffff;
+}
+
+#kyujinTitle {
+	font-size: 2.4em;
+	position: absolute;
+	top: 10px;
+	left: 30px;
+	margin: auto;
+}
+
+#kyujinMessage {
+	font-size: 1.5em;
+	position: absolute;
+	top: 70px;
+	right: 50px;
+	margin: auto;
+}
+
+div.businessSignage {
+	width: 80%;
+	height: 450px;
+	background-color: #00ffff;
+	position: fixed;
+	top: 120px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+div.businessItem1,div.businessItem2,div.businessItem3,div.businessItem4,
+div.businessItem5,div.businessItem6,div.businessItem7,div.businessItem8 {
+	font-size: 3em;
+	font-weight: bold;
+	text-align:center;
+	margin: auto;
+	vertical-align:center;
+
+}
+
+div.businessArea1 { /* 親ボックス */
+	width: 50%;
+	height: 50%;
+	//background-color: #000043;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.businessItem1 { 
+	width: 50%;
+	height: 100%;
+	background-color: #E0F8F1;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.businessItem2 { 
+	width: 50%;
+	height: 100%;
+	background-color: #E022F1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.businessArea2 { /* 親ボックス */
+	width: 50%;
+	height: 50%;
+	//background-color: #1f2013;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.businessItem3 { 
+	width: 50%;
+	height: 100%;
+	background-color: #E0F8F1;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.businessItem4 { 
+	width: 50%;
+	height: 100%;
+	background-color: #E022F1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.businessArea3 { /* 親ボックス */
+	width: 50%;
+	height: 50%;
+	//background-color: #003243;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+div.businessItem5 { 
+	width: 50%;
+	height: 100%;
+	background-color: #000090;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.businessItem6 { 
+	width: 50%;
+	height: 100%;
+	background-color: #421211;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.businessArea4 { /* 親ボックス */
+	width: 50%;
+	height: 50%;
+	//background-color: #066143;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+div.businessItem7 { 
+	width: 50%;
+	height: 100%;
+	background-color: #E01221;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.businessItem8 { 
+	width: 50%;
+	height: 100%;
+	background-color: #9111F1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.kyujinSignage {
+	width: 80%;
+	height: 480px;
+	background-color: #00ffff;
+	font-weight: bold;
+	position: fixed;
+	top: 90px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+#company {
+	font-size:2.2em;
+	font-weight:bold;
+	list-style-type: none;
+	position: absolute;
+	top: 20px;
+	left: 30px;
+	margin: auto;
+}
+
+#business, #place, #content, #tel, #url {
+	font-size: 1.4em;
+}
+
+#business {
+	position: absolute;
+	top: 100px;
+	left: 70px;
+	margin: auto;
+}
+
+#place {
+	position: absolute;
+	top: 150px;
+	left: 70px;
+	margin: auto;
+}
+
+#content {
+	position: absolute;
+	top: 200px;
+	left: 70px;
+	margin: auto;
+}
+
+#tel {
+	position: absolute;
+	top: 250px;
+	left: 70px;
+	margin: auto;
+}
+
+#url {
+	position: absolute;
+	top: 300px;
+	left: 70px;
+	margin: auto;
+}
+
+div.kyujinDetailSignage {
+	width: 80%;
+	height: 450px;
+	background-color: #00ffff;
+	position: fixed;
+	top: 120px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+
+#footer {
+	position:fixed;
+	bottom: 0px;
+}
+
+.busiBtn1,.busiBtn2,.busiBtn3,.busiBtn4,.busiBtn5,
+.busiBtn6,.busiBtn7,.busiBtn8{
+
+	//width: 200px;
+    //height: 200px;
+    //-webkit-border-radius: 50%;/* 50%でもOK */
+    //-moz-border-radius: 50%;
+    //border-radius: 50%;
+	border-radius: 20px;
+    background-color: #002220;/* 円の色 */
+	
+	font-size: 3em;
+	//font-weight: bold;
+	width: 40%;
+	//height: 72%;
+	//width: 250px;
+    height: 150px;
+	color: #ffffff;
+	padding: 10px 30px;
+	text-align:center;
+	
+	/*background-image:-moz-linear-gradient(
+    top,
+    #49a9d4 0%,
+    #2989d8 40%,
+    #2285d6 52%,
+    #2989d8);
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(#49a9d4),
+    color-stop(0.49,#2989d8),
+    color-stop(0.52,#2285d6),
+    to(#2989d8));*/
+}
+
+
+
+div.businessSelect1 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #000000;
+	position: absolute;
+	top: 325px;
+	left: 0px;
+}
+
+.busiBtn1 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 85px;
+	margin: auto;
+}
+.busiBtn2 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 85px;
+	margin: auto;
+}
+
+div.businessSelect2 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #35b9e0;
+	position: absolute;
+	top: 500px;
+	left: 0px;
+}
+
+.busiBtn3 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 85px;
+	margin: auto;
+}
+
+.busiBtn4 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 85px;
+	margin: auto;
+}
+
+div.businessSelect3 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #3529e0;
+	position: absolute;
+	top: 675px;
+	left: 0px;
+}
+
+.busiBtn5 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 85px;
+	margin: auto;
+}
+.busiBtn6 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 85px;
+	margin: auto;
+}
+
+div.businessSelect4 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #366900;
+	position: absolute;
+	top: 850px;
+	left: 0px;
+}
+
+.busiBtn7 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 85px;
+	margin: auto;
+}
+
+.busiBtn8 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 85px;
+	margin: auto;
+}
+
+
+ul {
+	font-size: 0.85em;
+	list-style-type: none;
+}
+
+div.kyujinReset { /* 親ボックス */
+	width: 100%;
+	height: 180px;
+	//background-color: #0055ff;
+	margin-bottom: -10px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+.businessReturn, .businessRelease {
+	background-color: black;
+	font-size: 2em;
+	font-weight: bold;
+	width: 50%;
+	height: 180px;
+	color: #fff;
+	padding: 10px 30px;
+	text-align:center;
+}
+. businessReturn {
+	position: absolute; 
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.businessRelease {
+	position: absolute;
+	right: 0;
+	margin: auto;
+}
+
+.kyujinBtn1,.kyujinBtn2,.kyujinBtn3,.kyujinBtn4,.kyujinBtn5,
+.kyujinBtn6,.kyujinBtn7,.kyujinBtn8,.kyujinBtn9,.kyujinBtn10 {
+
+	//width: 200px;
+    //height: 200px;
+    //-webkit-border-radius: 50%;/* 50%でもOK */
+    //-moz-border-radius: 50%;
+    //border-radius: 50%;
+	border-radius: 20px;
+    background-color: #825080;/* 円の色 */
+	
+	font-size: 7em;
+	//font-weight: bold;
+	width: 28%;
+	//height: 72%;
+	//width: 250px;
+    height: 150px;
+	color: #ffffff;
+	padding: 10px 30px;
+	text-align:center;
+	
+	/*background-image:-moz-linear-gradient(
+    top,
+    #49a9d4 0%,
+    #2989d8 40%,
+    #2285d6 52%,
+    #2989d8);
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(#49a9d4),
+    color-stop(0.49,#2989d8),
+    color-stop(0.52,#2285d6),
+    to(#2989d8));*/
+}
+
+div.kyujinSelect1 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #000000;
+	position: absolute;
+	top: 325px;
+	left: 0px;
+}
+
+.kyujinBtn1 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 60px;
+	margin: auto;
+}
+.kyujinBtn2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.kyujinBtn3 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 60px;
+	margin: auto;
+}
+
+div.kyujinSelect2 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #35b9e0;
+	position: absolute;
+	top: 500px;
+	left: 0px;
+}
+.kyujinBtn4 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 60px;
+	margin: auto;
+}
+.kyujinBtn5 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.kyujinBtn6 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 60px;
+	margin: auto;
+}
+
+div.kyujinSelect3 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #3529e0;
+	position: absolute;
+	top: 675px;
+	left: 0px;
+}
+.kyujinBtn7 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	left: 60px;
+	margin: auto;
+}
+.kyujinBtn8 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+.kyujinBtn9 {
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+	right: 60px;
+	margin: auto;
+}
+
+div.kyujinSelect4 { /* 親ボックス */
+	width: 100%;
+	height: 200px;
+	//background-color: #366900;
+	position: absolute;
+	top: 850px;
+	left: 0px;
+}
+.kyujinBtn10 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+
+.kyujinReturn, .kyujinRelease, .kyujinBeforeReturn,
+.kyujinReturn2, .kyujinRelease2, .kyujinBeforeReturn2  {
+	background-color: black;
+	font-size: 2em;
+	font-weight: bold;
+	width: 33.4%;
+	height: 180px;
+	color: #fff;
+	padding: 10px 30px;
+	text-align:center;
+}
+.kyujinReturn {
+	position: absolute; 
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.kyujinRelease {
+	position: absolute;
+	right: 0;
+	margin: auto;
+}
+.kyujinBeforeReturn {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.urlBtn {
+	background-color: #00ff23;
+	font-size: 2.8em;
+	width: 75%;
+    height: 200px;
+	color: #000000;
+	padding: 10px 30px;
+	text-align:center;
+	
+	position: absolute;
+	top: 250px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+div.secret {
+	width: 75%;
+	height: 400px;
+	background-color: #366900;
+	position: absolute;
+	top: 600px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+}
+
+#obog {
+	//background-color: #00ff23;
+	font-size: 2.8em;
+	color: #ffffff;
+
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	margin: auto;
+}
+
+.kyujinReturn2 {
+	position: absolute; 
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.kyujinRelease2 {
+	position: absolute;
+	right: 0;
+	margin: auto;
+}
+.kyujinBeforeReturn2 {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+
+
+.tab{overflow:hidden;}
+
+.tab li{background:#ccc; padding:5px 25px; float:left; margin-right:1px;}
+
+.tab li.select{background:#eee;}
+
+.content li{
+	width: 100%;
+	height: 500px;
+	background:#eee; 
+	padding:20px;
+}
+
+.hide {display:none;}

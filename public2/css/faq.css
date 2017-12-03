@@ -1,0 +1,89 @@
+#faqTitle {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.faqSignage {
+    width: 1000px;
+    height: 550px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.faq1, .faq2, .faq3 {
+    width: 950px;
+    height: 550px;
+    margin: 0 auto;
+
+}
+
+[class^="faqItem"] {
+    width: 290px;
+    height: 250px;
+		background-color: #d6eaff;
+    font-size: 2.5em;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+[class^="faqDetail"] {
+    padding: 0 10px;
+}
+
+.question {
+    font-size: 0.5em;
+}
+
+.answer {
+    font-size: 0.5em;
+}
+
+
+.slideFoward {
+}
+.slideReverse {
+
+}
+
+#arrow {
+    width: 100px;
+    height: 70px;
+    float: left;
+    margin-left: 150px;
+    margin-top: -15px;
+}
+#induction {
+    font-size: 32px;
+float: right;
+    margin-right: 180px;
+    margin-top: 0px;
+    color: red;
+}
+
+/* モーダル コンテンツエリア */
+#modal-main {
+　　display: none;
+　　width: 500px;
+　　height: 300px;
+　　margin: 0;
+　　padding: 0;
+　　background-color: #ffffff;
+　　color: #666666;
+　　position:fixed;
+　　z-index: 2;
+}
+/* モーダル 背景エリア */
+#modal-bg {
+　　display:none;
+　　width:100%;
+　　height:100%;
+　　background-color: rgba(0,0,0,0.5);
+　　position:fixed;
+　　top:0;
+　　left:0;
+　　z-index: 1;
+}

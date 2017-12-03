@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 "/>
+
+<title>キャリアセンター前①</title>
+<script src="./socket.io/socket.io.js"></script>
+<!-- オンラインの場合 -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<!-- オフラインの場合 -->
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>　
+<script src="./js/IpAddress.js"></script>
+<script  type="text/javascript" src="DigitalSignage1.js" charset="UTF-8"></script>
+<link rel="stylesheet" type="text/css" href="DigitalSignage1.css">
+<script src="./js/header.js"></script>
+
+<link rel="stylesheet" type="text/css" href="base.css">
+</head>
+
+<body onload="getCSV()">
+  <div id="container">
+<header id="header">
+</header>
+      <h1 id= "title" > 就活対策講座のご案内 </h1>
+      <hr>
+    <div id="viewer">
+      <ul id="ul">
+        <li></li>
+</ul>
+    </div>
+    <div id = "centerframe">
+      <div id="center">
+          <img id="image1" src="/picture/black.png" />
+        </div>
+      <div id="center2">
+          <img id="image2" src="/picture/blue.png" />
+      </div>
+    </div>
+      <div id="message">
+          <p>ディスプレイに近づいてください</p>
+      </div>
+
+  </div>
+</body>
+</html>

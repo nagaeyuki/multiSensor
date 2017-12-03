@@ -1,0 +1,80 @@
+.careerTitle {
+    font-size:40px;
+    margin-top:40px;
+    margin-left: 40px;
+}
+ul{
+  padding-top:5px;
+  margin-bottom: -15px;
+}
+ul > li{
+  margin: 25px 0;
+  font-size: 20px;
+}
+
+.contents {
+  width: 700px;
+  margin: 50px auto;
+  background-color: #d6eaff;
+}
+.scroll {
+  position: relative;
+  height: 400px;
+  padding: 10px;
+  overflow: auto;
+}
+.month{
+  width: 20%;
+  font-size : 2em;
+  font-weight : bold;
+  margin-bottom : 10px;
+  border-bottom-width : 1px;
+  border-bottom-style : solid;
+  border-bottom-color : #666666;
+  border-left-width : 7px;
+  border-left-style : solid;
+  border-left-color : #666666;
+  padding-top : 2px;
+  padding-left : 8px;
+  padding-bottom : 2px;
+}
+
+.line{
+  border-bottom-width : 1px;
+  border-bottom-style : solid;
+  border-bottom-color : #000000;
+  padding-bottom : 10px;
+
+}
+.name {
+  font-weight:bold;
+  font-size: 1.2em;
+}
+/*[id^="csvid"]{
+
+}*/
+.clear{
+clear:both;
+}
+.item{
+float: left;
+}
+p:not(#name, #induction)
+{
+  padding-left : 100px;
+}
+
+#induction{
+  font-size: 32px;
+  float:right;
+  margin-right: 110px;
+  color:red;
+}
+
+#arrow {
+    width:100px;
+    height:70px;
+  float: left;
+  margin-left: 120px;
+  margin-top: 10px;
+}

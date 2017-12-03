@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Node Kinect2 Client</title>
+<link rel="stylesheet" type="text/css" href="css/kinect.css">
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>　
+<!-- <script src="//code.jquery.com/jquery-1.12.3.min.js"></script> -->
+
+</head>
+<body>
+  <div id="test">
+<canvas id="canvas" height="424" width="512"></canvas>
+<!-- <canvas id="imageCanvas" height="424" width="512"></canvas>
+<canvas id="grayImage" height="424" width="512"></canvas>-->
+<div id ="Imageframe">
+  <img id="img_0" class="colorImage" src="/picture/red.png"/>
+  <img id="img_1" class="colorImage" src="/picture/green.png"/>
+  <img id="img_2" class="colorImage" src="/picture/blue.png"/>
+  <img id="img_3" class="colorImage" src="/picture/yellow.png"/>
+  <img id="img_4" class="colorImage" src="/picture/lightblue.png"/>
+  <img id="img_5" class="colorImage" src="/picture/pink.png"/>
+<img id="gray" src="/picture/gray.png"/>
+</div>
+</div>
+  <!-- <canvas id="bodycanvas" width="512" height="424"></canvas> -->
+    <!-- <canvas id="canvas" width="512" height="424"></canvas> -->
+<div id="info">
+    <dl>
+      <p>距離を設定してください（40cm～800cm）</p>
+      <form name="form1" id="form1" action="">
+        最小値(表示切替を行う距離):<input type="text" id="min">cm
+        <!-- 中間値:<input type="text" id="middle">cm -->
+        最大値:<input type="text" id="max">cm
+        <input type="button" value="決定" id="exec">
+    </form>
+        <dt>距離</dt>
+        <dd id="distance">未取得</dd>
+        <dt>状態</dt>
+        <dd id="state">未取得</dd>
+        <!--<dt>近づく、遠ざかる</dt>
+        <dd id="approach">未取得</dd>-->
+        <dt>範囲内</dt>
+        <dd id="range">未取得</dd>
+        <dt>bodyNumberList</dt>
+        <dd id="bodyNumbertext"></dd>
+       <!-- <dt>averageList</dt>
+        <dd id="averageList"></dd>-->
+    </dl>
+    <dl>
+        <dt>ターゲット</dt>
+        <dd id="target"></dd>
+        <dt>Number0</dt>
+        <dd id="zero"></dd>
+        <dt>Number1</dt>
+        <dd id="one"></dd>
+        <dt>Number2</dt>
+        <dd id="two"></dd>
+        <dt>Number3</dt>
+        <dd id="three"></dd>
+        <dt>Number4</dt>
+        <dd id="four"></dd>
+        <dt>Number5</dt>
+        <dd id="five"></dd>
+    </dl>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="js/kinect.js"></script>
+
+</div>
+</body>
+</html>

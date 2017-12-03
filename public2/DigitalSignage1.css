@@ -1,0 +1,68 @@
+#viewer {
+    margin: auto auto;
+    width: 960px;
+    height: 400px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 75px;
+}
+
+#viewer ul {
+    width: 960px;
+    height: 400px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    margin:30px auto;
+}
+
+#viewer ul li {
+    top: 0;
+    left: 0;
+    width: 960px;
+    height: 400px;
+    display: none;
+    position: absolute;
+}
+#message{
+  position: fixed;
+  font-size: 32px;
+  text-align: center;
+  top: 560px;
+  left:100px;
+  right: 100px;
+  color:red;
+}
+#center{
+  text-align: center;
+    position:fixed;
+    top: 400px;
+    left:100px;
+  right: 100px;
+
+}
+#center2{
+    text-align: center;
+    height:300px;
+    position:fixed;
+   top: 400px;
+  left:100px;
+  right: 100px;
+
+}
+#centerframe{
+  width: 300px;
+  height: 300px;
+
+}
+
+#image1{
+    width:300px;
+    height:300px;
+}
+#image2{
+    width:0px;
+    height:0px;
+transform-origin:30px 70px;
+
+}
