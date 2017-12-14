@@ -1,0 +1,85 @@
+    body {
+    width: 100%;
+    height: 100%;
+}
+
+#buttonBox {
+    margin: 20px 10px;
+}
+
+#main {
+    margin: 200px 200px;
+}
+.cube{
+    margin: 0;
+    /* position: relative; */
+    position: absolute;
+    transform-style: preserve-3d;
+    transform-origin: 100px 100px;
+    transform: rotateX(-20deg) rotateY(-20deg);  
+}
+#cube1 {
+}
+#cube2 {   
+    margin-left: 300px;
+}
+#cube3 {
+    margin-top: 300px;
+}
+#cube4 {
+    margin-top: 300px;
+    margin-left: 300px;
+}
+
+.surface {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
+text {
+    fill: black;
+    font-size: 130px;
+}
+
+#front {
+    transform: rotateY(0deg) translateZ(100px);
+    background: red;
+    opacity: 0.6;
+}
+
+#back {
+    transform: rotateX(180deg) translateZ(100px);
+    background: pink;
+    opacity: 0.6;
+}
+
+#right {
+    transform: rotateY(90deg) translateZ(100px);
+    background: blue;
+    opacity: 0.6;
+}
+
+#left {
+    transform: rotateY(-90deg) translateZ(100px);
+    background: skyblue;
+    opacity: 0.6;
+}
+
+#top {
+    transform: rotateX(90deg) translateZ(100px);
+    background: green;
+    opacity: 0.6;
+}
+
+#bottom {
+    transform: rotateX(-90deg) translateZ(100px) rotateZ(180deg);
+    background: yellow;
+    opacity: 0.6;
+}
