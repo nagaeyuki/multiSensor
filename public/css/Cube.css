@@ -16,19 +16,19 @@
     position: absolute;
     transform-style: preserve-3d;
     transform-origin: 100px 100px;
-    transform: rotateX(-20deg) rotateY(-20deg);  
+    /* transform: rotateX(-20deg) rotateY(-20deg);   */
 }
-#cube1 {
+#cube0 {
 }
-#cube2 {   
-    margin-left: 300px;
+#cube1 {   
+    margin-left: 250px;
+}
+#cube2 {
+    margin-top: 250px;
 }
 #cube3 {
-    margin-top: 300px;
-}
-#cube4 {
-    margin-top: 300px;
-    margin-left: 300px;
+    margin-top: 250px;
+    margin-left: 250px;
 }
 
 .surface {

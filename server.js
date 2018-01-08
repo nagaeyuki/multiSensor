@@ -27,23 +27,19 @@ var util = require('util');
 var async = require('async');
 var SensorTag = require('./index').CC2650;
 var deviceList = [];
-var before_Top = 0;
-var now_Top = 0;
 
-var gyro_interval = 100;
-var gyro_time = 0;
+var accele_interval = 100;
+var gyro_interval = 200;
+
 var angle = 0;
 var pregyro = 0;
-
-
 var time = 0;
 var gyro;
 var select = 0;
 var gyro_store = 0;
 var GyroFrag;
-var preSelect = -1;
-var showModal = false;
 
+var sample = 0;
 var array = [];
 
 
@@ -52,11 +48,11 @@ function onDiscover(sensorTag) {
   deviceList.push(sensorTag.uuid);
   deviceList[sensorTag.uuid] = [];
   deviceList[sensorTag.uuid] = {
-    nowTop: '',
-    beforeTop: ''
+    nowFront: '',
+    beforeFront: '',
+    gyro: 0
   };
   console.log(deviceList);
-
 
   sensorTag.on('disconnect', function () {
     deviceList.splice(deviceList.indexOf(sensorTag.uuid), 1);
@@ -81,155 +77,158 @@ function onDiscover(sensorTag) {
       setTimeout(callback, 2000);
     },
     function (callback) {
+      
         console.log(sensorTag.uuid + ':setAccelerometerPeriod');
         sensorTag.on('accelerometerChange', function (x, y, z) {
           var X = x.toFixed(1);
           var Y = y.toFixed(1);
           var Z = z.toFixed(1);
-          // console.log(sensorTag.uuid);          
-          // if (time++ == 10) {
-          if (X <= 0.1 && X >= -0.1 && Y <= 0.1 && Y >= -0.1 && Z >= 0.9) {
-            deviceList[sensorTag.uuid].nowTop = 1;
-          } else if (X <= -0.9 && Y <= 0.1 && Y >= -0.1 && Z >= -0.1 && Z <= 0.1) {
-            deviceList[sensorTag.uuid].nowTop = 2;
-          } else if (X <= 0.1 && X >= -0.1 && Y >= 0.9 && Z <= 0.1 && Z >= -0.1) {
-            deviceList[sensorTag.uuid].nowTop = 3;
-          } else if (X <= 0.1 && X >= -0.1 && Y <= -0.9 && Z <= 0.1 && Z >= -0.1) {
-            deviceList[sensorTag.uuid].nowTop = 4;
-          } else if (X >= 0.9 && Y <= 0.1 && Y >= -0.1 && Z >= -0.1 && Z <= 0.1) {
-            deviceList[sensorTag.uuid].nowTop = 5;
-          } else if (X <= 0.1 && X >= -0.1 && 　Y <= 0.1 && Y >= -0.1 && Z <= -0.9) {
-            deviceList[sensorTag.uuid].nowTop = 6;
-          }
-         
-          if (deviceList[sensorTag.uuid].beforeTop != deviceList[sensorTag.uuid].nowTop) {
-            console.log(sensorTag.uuid + ":今=" + deviceList[sensorTag.uuid].nowTop + "前=" + deviceList[sensorTag.uuid].beforeTop);
-            io.sockets.emit("nowTop", deviceList[sensorTag.uuid].nowTop);
-          }
-          deviceList[sensorTag.uuid].beforeTop = deviceList[sensorTag.uuid].nowTop;
-        });
-        sensorTag.setAccelerometerPeriod(1000, function (error) {
-          console.log('notifyAccelerometer');
-          sensorTag.notifyAccelerometer(function (error) {
-            setTimeout(function () {
-            //   //console.log('unnotifyAccelerometer');
-              sensorTag.unnotifyAccelerometer(callback);
-            }, 2000);
-          });
-        });
-    },
-    function (callback) {
-      console.log('enableGyroscope');
-      sensorTag.enableGyroscope(callback);
-    },
-    function (callback) {
-      setTimeout(callback, 2000);
-    },
-    function (callback) {
-      
-        sensorTag.on('gyroscopeChange', function (x, y, z) {
-          //console.log(GyroFrag);
-          var X = x.toFixed(1);
-          var Y = y.toFixed(1);
-          var Z = z.toFixed(1);
-          //console.log('\tx = %d °/s', x.toFixed(1));
-          //console.log('\ty = %d °/s', y.toFixed(1));
-          //console.log('\tz = %d °/s', z.toFixed(1));
-          //angle +=  Z * gyro_interval;
+            io.sockets.emit("ondata", { x: X, y: Y, z: Z});
 
-          var temp;
-          switch (deviceList[sensorTag.uuid].nowTop) {
-            case 2:
-              temp = -X;
-              X = Z;
-              Z = temp;
-              break;
-            case 3:
-              temp = Y;
-              Y = Z;
-              Z = temp;
-              break;
-            case 4:
-              temp = -Y;
-              Y = Z;
-              Z = temp;
-              break;
-            case 5:
-              temp = X;
-              X = -Z;
-              Z = temp;
-              break;
-            case 6:
-              Z = -Z;
-              break;
-          }
-          
-          
-          
-       
-          if (-4 <= Z && Z <= 4){
-            Z = 0;
-          }
-          array.push(Z);
-          if (pregyro == 0) {
-            angle += Z * gyro_interval / 2;
-          } else {
-            angle += (parseInt(pregyro) + parseInt(Z)) * gyro_interval / 2;
-          }
-          gyro_time += gyro_interval;
-          pregyro = Z;
-          if (gyro_time == 1000) {
-            angle = -angle / 1000;
-            // console.log("角度:" + angle);
-
-            // if (70 <= angle) {
-            //   select += (Math.ceil(angle / 40));
-            // } else if (20 < angle && angle < 70) {
-            //   select++;
-            // } else if (-70 >= angle) {
-            //   select += (Math.ceil(angle / 40));
-            // } else if (-70 <= angle && -20 >= angle) {
-            //   select--;
-            // }
-            // if (-5 <= angle && angle <= 5) {
-            //   if (preSelect != select || preSelect == -1) {
-            //     io.sockets.emit("NoOperation", select);
-            //   }
-            //   preSelect = select;
-            // }
-
-            // if (select > 32) {
-            //   select = 0;
-            // } else if (select < 0) {
-            //   select = 32;
-            // }
-            // console.log(angle);
-            // console.log("select:" + select);
-
-            gyro_time = 0;
-            pregyro = 0;
+          //値がおかしいセンサがあった時の処理
+          if(3.8 < Math.abs(X) || 3.8 < Math.abs(Y) || 3.8 < Math.abs(Z)){
+            if (X <= 0.6 && X >= -0.6 && Y <= 0.6 && Y >= -0.6 && Z >= 3.8) {
+              deviceList[sensorTag.uuid].nowFront = 1;
+            } else if (X <= -3.8 && Y <= 0.6 && Y >= -0.6 && Z >= -0.6 && Z <= 0.6) {
+              deviceList[sensorTag.uuid].nowFront = 2;
+            } else if (X <= 0.6 && X >= -0.6 && Y >= 3.8 && Z <= 061 && Z >= -0.6) {
+              deviceList[sensorTag.uuid].nowFront = 3;
+            } else if (X <= 0.6 && X >= -0.6 && Y <= -3.8 && Z <= 0.6 && Z >= -0.6) {
+              deviceList[sensorTag.uuid].nowFront = 4;
+            } else if (X >= 3.8 && Y <= 061 && Y >= -0.6 && Z >= -0.6 && Z <= 0.6) {
+              deviceList[sensorTag.uuid].nowFront = 5;
+            } else if (X <= 0.6 && X >= -0.6 && Y <= 0.6 && Y >= -0.6 && Z <= 3.8) {
+              deviceList[sensorTag.uuid].nowFront = 6;
+            }
+          }else{
+            if (X <= 0.1 && X >= -0.1 && Y <= 0.1 && Y >= -0.1 && Z >= 0.9) {
+              deviceList[sensorTag.uuid].nowFront = 1;
+            } else if (X <= -0.9 && Y <= 0.1 && Y >= -0.1 && Z >= -0.1 && Z <= 0.1) {
+              deviceList[sensorTag.uuid].nowFront = 2;
+            } else if (X <= 0.1 && X >= -0.1 && Y >= 0.9 && Z <= 0.1 && Z >= -0.1) {
+              deviceList[sensorTag.uuid].nowFront = 3;
+            } else if (X <= 0.1 && X >= -0.1 && Y <= -0.9 && Z <= 0.1 && Z >= -0.1) {
+              deviceList[sensorTag.uuid].nowFront = 4;
+            } else if (X >= 0.9 && Y <= 0.1 && Y >= -0.1 && Z >= -0.1 && Z <= 0.1) {
+              deviceList[sensorTag.uuid].nowFront = 5;
+            } else if (X <= 0.1 && X >= -0.1 && Y <= 0.1 && Y >= -0.1 && Z <= -0.9) {
+              deviceList[sensorTag.uuid].nowFront = 6;
+            }
             
-            // io.sockets.emit("select", select);
-            // console.log(array);
-            io.sockets.emit("test", angle);
           }
-          if(array.length == 10){
-            array.shift();
+          console.log(++sample, sensorTag.uuid  + ':\tx = %d G', x.toFixed(1), '\ty = %d G', y.toFixed(1), '\tz = %d G', z.toFixed(1));
+
+          //一回目目のセンシング
+          if (deviceList[sensorTag.uuid].beforeFront == ""){
+            // io.sockets.emit("acceledata", { nowFront: deviceList[sensorTag.uuid].nowFront, sensorIdNumber: deviceList.indexOf(sensorTag.uuid) });
           }
+          if (deviceList[sensorTag.uuid].beforeFront != deviceList[sensorTag.uuid].nowFront) {
+            // console.log(sensorTag.uuid + ":今=" + deviceList[sensorTag.uuid].nowFront + "前=" + deviceList[sensorTag.uuid].beforeFront);
+            // io.sockets.emit("acceledata", { nowFront: deviceList[sensorTag.uuid].nowFront, sensorIdNumber: deviceList.indexOf(sensorTag.uuid)});
+          }
+          deviceList[sensorTag.uuid].beforeFront = deviceList[sensorTag.uuid].nowFront;
         });
 
-        console.log('setGyroscopePeriod');
-        sensorTag.setGyroscopePeriod(gyro_interval, function (error) {
-          console.log('notifyGyroscope');
-          sensorTag.notifyGyroscope(function (error) {
-            // setTimeout(function() {
-            //   console.log('unnotifyGyroscope');
-            //   sensorTag.unnotifyGyroscope(callback);
-            // }, 10000);
-          });
+      sensorTag.setAccelerometerPeriod(accele_interval, function (error) {
+          // setTimeout(callback, 2000);
+          // console.log('notifyAccelerometer');
+          // sensorTag.notifyAccelerometer(function (error) {
+          //   // setTimeout(function () {
+          //     console.log('unnotifyAccelerometer');
+          //     sensorTag.unnotifyAccelerometer(callback);
+          //   // }, 5000);
+          // });
         });
-      
     },
+    // function (callback) {
+    //   console.log('enableGyroscope');
+    //   sensorTag.enableGyroscope(callback);
+    // },
+    // function (callback) {
+    //   setTimeout(callback, 2000);
+    // },
+    // function (callback) {
+      
+    //     sensorTag.on('gyroscopeChange', function (x, y, z) {
+    //       var X = x.toFixed(1);
+    //       var Y = y.toFixed(1);
+    //       var Z = z.toFixed(1);
+    //       //console.log('\tx = %d °/s', x.toFixed(1));
+    //       //console.log('\ty = %d °/s', y.toFixed(1));
+    //       //console.log('\tz = %d °/s', z.toFixed(1));
+    //       //angle +=  Z * gyro_interval;
+
+    //       var temp;
+    //       switch (deviceList[sensorTag.uuid].nowFront) {
+    //         case 2:
+    //           temp = -X;
+    //           X = Z;
+    //           Z = temp;
+    //           break;
+    //         case 3:
+    //           temp = Y;
+    //           Y = Z;
+    //           Z = temp;
+    //           break;
+    //         case 4:
+    //           temp = -Y;
+    //           Y = Z;
+    //           Z = temp;
+    //           break;
+    //         case 5:
+    //           temp = X;
+    //           X = -Z;
+    //           Z = temp;
+    //           break;
+    //         case 6:
+    //           Z = -Z;
+    //           break;
+    //       }
+          
+      
+    //       if (-4 <= Z && Z <= 4){
+    //         // Z = 0;
+    //       }
+    //       array.push(Z);
+    //       if (pregyro == 0) {
+    //         angle += Z * gyro_interval / 2;
+    //       } else {
+    //         angle += (parseInt(pregyro) + parseInt(Z)) * gyro_interval / 2;
+    //       }
+    //       deviceList[sensorTag.uuid].gyro += gyro_interval;
+          
+    //       pregyro = Z;
+    //       if (deviceList[sensorTag.uuid].gyro == 1000) {
+
+    //         angle = angle / 1000;
+    //         if(-5 < angle && angle < 5){
+    //           angle = 0;
+    //         }
+    //         if(angle != 0){
+    //         console.log("回った角度:" + angle + " id:" + deviceList.indexOf(sensorTag.uuid));
+    //           io.sockets.emit("gyrodata", { angle: angle, sensorIdNumber: deviceList.indexOf(sensorTag.uuid) });
+    //         }
+    //         pregyro = 0;
+    //         deviceList[sensorTag.uuid].gyro=0;
+    //       }
+    //       if(array.length == 10){
+    //         array.shift();
+    //       }
+          
+    //     });
+
+        // console.log('setGyroscopePeriod');
+        // sensorTag.setGyroscopePeriod(gyro_interval, function (error) {
+        //   console.log('notifyGyroscope');
+        //   sensorTag.notifyGyroscope(function (error) {
+        //     // setTimeout(function() {
+        //     //   console.log('unnotifyGyroscope');
+        //       // sensorTag.unnotifyGyroscope(callback);
+        //     // }, 10000);
+        //   });
+        // });
+      
+    // },
     function (callback) {
       console.log('disableGyroscope');
       sensorTag.disableGyroscope(callback);
@@ -245,5 +244,5 @@ function onDiscover(sensorTag) {
 
   ]);
 }
-
+// SensorTag.discover(onDiscover);
 SensorTag.discoverAll(onDiscover);

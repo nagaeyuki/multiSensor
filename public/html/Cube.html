@@ -9,6 +9,9 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <!-- オフラインの場合 -->
   <!-- <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>　 -->
+  <!-- <script type="text/javascript" src="../jquery/jquery-animate-css-rotate-scale/jquery-animate-css-rotate-scale.js"></script> -->
+  <!-- <script type="text/javascript" src="../jquery/jquery-css-transform/jquery-css-transform.js"></script> -->
+  <script type="text/javascript" src="../jquery/jQuery-3D-transform/src/jquery.transform.js"></script>
   <script type="text/javascript" src="../js/Cube.js" charset="UTF-8"></script>
   <link rel="stylesheet" type="text/css" href="../css/Cube.css">
 </head>
@@ -16,7 +19,7 @@
 <body>
   <div id="wrap">
     <!-- 回転率入力 -->
-    <form id="AngleBox">
+    <!-- <form id="AngleBox">
       <p>
         <br />角度Ｘ：
         <input type="text" name="tax" id="tax" value="-20" title="角度Ｘ">-360から360を入力下さい
@@ -36,13 +39,39 @@
     <div id="buttonBox">
       <button id="rotation">回　転</button>
       <button id="reset">リセット</button>
-    </div>
+    </div> -->
     <!-- 正六面体 -->
     <div id="main">
+      <div class="cube" id="cube0">
+        <svg class="surface" id="top" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">1</text>
+        </svg>
+        <svg class="surface" id="front" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">2</text>
+        </svg>
+        <svg class="surface" id="left" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">3</text>
+        </svg>
+        <svg class="surface" id="right" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">4</text>
+        </svg>
+        <svg class="surface" id="back" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">5</text>
+        </svg>
+        <svg class="surface" id="bottom" viewBox="-100 -100 200 200">
+          <rect x="-100" y="-100" width="200" hight="200"></rect>
+          <text x="-50" y="40">6</text>
+        </svg>
+      </div>
       <div class="cube" id="cube1">
         <svg class="surface" id="top" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">10</text>
+          <text x="-50" y="40">1</text>
         </svg>
         <svg class="surface" id="front" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
@@ -68,7 +97,7 @@
       <div class="cube" id="cube2">
         <svg class="surface" id="top" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">10</text>
+          <text x="-50" y="40">1</text>
         </svg>
         <svg class="surface" id="front" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
@@ -81,6 +110,7 @@
         <svg class="surface" id="right" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
           <text x="-50" y="40">4</text>
+        </svg>
         </svg>
         <svg class="surface" id="back" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
@@ -94,34 +124,7 @@
       <div class="cube" id="cube3">
         <svg class="surface" id="top" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">10</text>
-        </svg>
-        <svg class="surface" id="front" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">2</text>
-        </svg>
-        <svg class="surface" id="left" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">3</text>
-        </svg>
-        <svg class="surface" id="right" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">4</text>
-        </svg>
-        </svg>
-        <svg class="surface" id="back" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">5</text>
-        </svg>
-        <svg class="surface" id="bottom" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">6</text>
-        </svg>
-      </div>
-      <div class="cube" id="cube4">
-        <svg class="surface" id="top" viewBox="-100 -100 200 200">
-          <rect x="-100" y="-100" width="200" hight="200"></rect>
-          <text x="-50" y="40">10</text>
+          <text x="-50" y="40">1</text>
         </svg>
         <svg class="surface" id="front" viewBox="-100 -100 200 200">
           <rect x="-100" y="-100" width="200" hight="200"></rect>
@@ -146,6 +149,27 @@
         </svg>
       </div>
     </div>
+    <dl>
+      <dt>加速度X</dt>
+      <dd id="accelex"></dd>
+      <dt>加速度Y</dt>
+      <dd id="acceley"></dd>
+      <dt>加速度Z</dt>
+      <dd id="accelez"></dd>
+<dt>角度X</dt>
+<dd id="Akakudox"></dd>
+<dt>角度Y</dt>
+<dd id="Akakudoy"></dd>
+<dt>角度Z</dt>
+<dd id="Akakudoz"></dd>
+      <!-- <dt>ジャイロX</dt>
+      <dd id="gyrox"></dd>
+      <dt>ジャイロY</dt>
+      <dd id="gyroy"></dd>
+      <dt>ジャイロZ</dt>
+      <dd id="gyroz"></dd> -->
+      
+    </dl>
   </div>
 </body>
 
