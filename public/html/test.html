@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>軸オブジェクト</title>
+    <script src="../socket.io/socket.io.js"></script>
+    <!-- オンラインの場合 -->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/75/three.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px
+        }
+
+        div#canvas-frame {
+            width: 500px;
+            /* 横幅 */
+            height: 500px;
+            /* 縦幅 */
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        var socket = io.connect(location.origin);
+        ////////////////////////////////////////////////////////////////////
+        // windowイベントの定義
+        ////////////////////////////////////////////////////////////////////
+        window.addEventListener("DOMContentLoaded", function () {
+            resizeTo(516, 539);
+            threeStart(); //Three.jsのスタート関数の実行
+        });
+        ////////////////////////////////////////////////////////////////////
+        // Three.jsスタート関数の定義
+        ////////////////////////////////////////////////////////////////////
+        function threeStart() {
+            initThree();  //Three.js初期化関数の実行
+            initObject(); //オブジェクト初期化関数の実行
+            initCamera(); //カメラ初期化関数の実行
+            draw();       //描画関数の実行
+        }
+        ////////////////////////////////////////////////////////////////////
+        // Three.js初期化関数の定義
+        ////////////////////////////////////////////////////////////////////
+        //グローバル変数の宣言
+        var renderer,    //レンダラーオブジェクト
+            scene,       //シーンオブジェクト
+            canvasFrame; //キャンバスフレームのDOM要素
+        function initThree() {
+            //キャンバスフレームDOM要素の取得
+            canvasFrame = document.getElementById('canvas-frame');
+            //レンダラーオブジェクトの生成
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            //renderer = new THREE.CanvasRenderer();//<-----------------------------------------------------（canvasレンダラー）
+            if (!renderer) alert('Three.js の初期化に失敗しました');
+            //レンダラーのサイズの設定
+            renderer.setSize(canvasFrame.clientWidth, canvasFrame.clientHeight);
+            //キャンバスフレームDOM要素にcanvas要素を追加
+            canvasFrame.appendChild(renderer.domElement);
+
+            //レンダラークリアーカラーの設定
+            renderer.setClearColor(0xEEEEEE, 1.0);
+
+            //シーンオブジェクトの生成
+            scene = new THREE.Scene();
+        }
+        ////////////////////////////////////////////////////////////////////
+        // カメラ初期化関数の定義
+        ////////////////////////////////////////////////////////////////////
+        //グローバル変数の宣言
+        var camera;    //カメラオブジェクト
+        function initCamera() {
+            //カメラオブジェクトの生成
+            camera = new THREE.PerspectiveCamera(45, canvasFrame.clientWidth / canvasFrame.clientHeight, 1, 10000);
+            //カメラの位置の設定
+            camera.position.set(100, 100, 100);
+            //カメラの上ベクトルの設定
+            camera.up.set(0, 0, 1);
+            //カメラの中心位置ベクトルの設定
+            camera.lookAt({ x: 0, y: 0, z: 0 }); //トラックボール利用時は自動的に無効
+        }
+        ////////////////////////////////////////////////////////////////////
+        // オブジェクト初期化関数の定義
+        ////////////////////////////////////////////////////////////////////
+        //グローバル変数の宣言
+        var axis; //軸オブジェクト
+        var cube; //直方体オブジェクト
+        var geometry;
+        var material;
+        function initObject() {
+            //軸オブジェクトの生成
+            axis = new THREE.AxisHelper(100);
+            //軸オブジェクトのシーンへの追加
+            scene.add(axis);
+            //軸オブジェクトの位置座標を設定
+            axis.position.set(0, 0, 0);
+
+            //形状オブジェクトの宣言と生成
+             geometry = new THREE.BoxGeometry(50, 50, 50);
+            //材質オブジェクトの宣言と生成
+            //  material = new THREE.MeshNormalMaterial();
+                     material = [
+                new THREE.MeshLambertMaterial({ color: 0x00ff00 }),
+                new THREE.MeshLambertMaterial({ color: 0xf0ffff }),
+                new THREE.MeshLambertMaterial({ color: 0x0000ff }),
+                new THREE.MeshLambertMaterial({ color: 0xffa500 }),
+                new THREE.MeshLambertMaterial({ color: 0xff0000 }),
+                new THREE.MeshLambertMaterial({ color: 0xda70d6 })
+            ];
+            //直方体オブジェクトの生成
+            cube = new THREE.Mesh(geometry, material);
+            //直方体オブジェクトのシーンへの追加
+            scene.add(cube);
+            //直方体オブジェクトの位置座標を設定
+            cube.position.set(0, 0, 0);
+
+            var faceNormalhelper = new THREE.FaceNormalsHelper(cube, 10);
+            scene.add(faceNormalhelper);
+        }
+
+        var accelex = document.getElementById('accelex');
+        var acceley = document.getElementById('acceley');
+        var accelez = document.getElementById('accelez');
+        var gyrox = document.getElementById('gyrox');
+        var gyroy = document.getElementById('gyroy');
+        var gyroz = document.getElementById('gyroz');
+        var Akakudox = document.getElementById('Akakudox');
+        var Akakudoy = document.getElementById('Akakudoy');
+        var Akakudoz = document.getElementById('Akakudoz');
+        var X = 0;
+        var Y = 0;
+        var Z = 0;
+        var X_a;
+        var Y_a;
+        var Z_a;
+
+        var radian = Math.PI / 180; //度をラジアンに変換
+        var degree = 180 / Math.PI; //ラジアンを度に変換
+
+        socket.on("ondata", function (data) {
+            X = X * 0.9 + data.x * 0.1;
+            Y = Y * 0.9 + data.y * 0.1;
+            Z = Z * 0.9 + data.z * 0.1;
+            // X = data.x;
+            // Y = data.y;
+            // Z = data.z;
+            var gravity = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2) + Math.pow(Z, 2));
+            console.log(gravity);
+            //あらめの角度計算
+            // var X_a = Math.asin(Y / Math.sqrt(Math.pow(Y, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
+            // var Y_a = Math.asin(X / Math.sqrt(Math.pow(X, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
+            X_a = Math.atan2(X, Math.sqrt(Math.pow(Y, 2) + Math.pow(Z, 2))) * degree;
+            Y_a = Math.atan2(Y, Math.sqrt(Math.pow(X, 2) + Math.pow(Z, 2))) * degree;
+            Z_a = Math.atan2(Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2)), Z) * degree;
+            // var X_a = Math.atan(X/ Math.sqrt(Math.pow(Y, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
+            // var Y_a = Math.atan(Y/ Math.sqrt(Math.pow(X, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
+
+            // var Z_a = Math.atan(Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2))/ Z) * (180 / Math.PI);
+            // var X_a = ((Math.asin(Y) * (180 / 3.1415)).toFixed(1));
+            // var Y_a = ((Math.asin(X) * (180 / 3.1415)).toFixed(1));
+            //    var  X_a = value_adjust((Math.asin(Y) * (180 / 3.1415)).toFixed(1));
+            //     var Y_a = value_adjust((Math.asin(X) * (180 / 3.1415)).toFixed(1));
+            console.log(Math.asin(0));
+            Akakudox.innerHTML = X_a;
+            Akakudoy.innerHTML = Y_a;
+            Akakudoz.innerHTML = Z_a;
+            accelex.innerHTML = X;
+            acceley.innerHTML = Y;
+            accelez.innerHTML = Z;
+        });
+        ////////////////////////////////////////////////////////////////////
+        // 描画関数の定義
+        ////////////////////////////////////////////////////////////////////
+        function draw() {
+           requestAnimationFrame(draw);
+            // 箱を回転させる
+            scene.remove(cube); //copyが上書きかも
+            cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+            cube.position.y = 150;
+            // cube[0].useQuaternion = true;
+            var Axis = {
+                "x": new THREE.Vector3(1, 0, 0).normalize(),
+                "y": new THREE.Vector3(0, 1, 0).normalize(),
+                "z": new THREE.Vector3(0, 0, 1).normalize()
+            };
+            // var origin_pos = cube.position.clone();
+            var quat = new THREE.Quaternion();
+            // var new_q = origin_quaternion.clone();
+            var axis = new THREE.Vector3(1, 1, 1).normalize();
+            // 回転軸axis と角度angle からクォータニオンを計算
+            var qz = quat.setFromAxisAngle(Axis.z, Z_a * radian);
+            // quat.setFromAxisAngle(Axis.x, X_a * radian);
+            // quat.set(X_a, Y_a, Z_a);
+            // new_q.multiply(quat);
+            // cube[0].Quaternion.copy(new_q);
+            // cube[0].rotation = quat.
+            // メッシュを回転させる
+            // quat.multiply(cube[0].quaternion.clone());
+            var qy = quat.setFromAxisAngle(Axis.y, Y_a * radian);
+            // quat.multiply(cube[0].quaternion.clone());
+            cube.quaternion.multiply(quat);
+            var qx = quat.setFromAxisAngle(Axis.x, X_a * radian);
+            // quat.setFromAxisAngle(axis, qx * qy);
+            cube.quaternion.multiply(quat);
+            quat.multiply(cube.quaternion.clone());
+            // cube[0].quaternion.copy(quat);  
+            // cube[0].rotation.x = X_a * radian;
+            // cube[0].rotation.y = Y_a * radian;
+            // cube[0].rotation.z = Z_a * radian;
+            // レンダリング
+            renderer.render(scene, camera);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- canvas要素を配置するdiv要素 -->
+    <div id="canvas-frame"></div>
+
+    <dl>
+        <dt>加速度X</dt>
+        <dd id="accelex"></dd>
+        <dt>加速度Y</dt>
+        <dd id="acceley"></dd>
+        <dt>加速度Z</dt>
+        <dd id="accelez"></dd>
+        <dt>角度X</dt>
+        <dd id="Akakudox"></dd>
+        <dt>角度Y</dt>
+        <dd id="Akakudoy"></dd>
+        <dt>角度Z</dt>
+        <dd id="Akakudoz"></dd>
+    </dl>
+</body>
+
+</html>

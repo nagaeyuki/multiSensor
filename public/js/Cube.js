@@ -123,16 +123,16 @@ Z = Z * 0.9 + data.z * 0.1;
 
    
     
-    socket.on("gyrodata", function (data) {
+    socket.on("gyrodata2", function (data) {
         var AngleRotate = "";
         var flg = true;
         var id = data.sensorIdNumber;
         var angle = deviceList[id].angle;
         var preangle = deviceList[id].preangle;
         var circleangle = deviceList[id].circleangle;
-        if(data.angle != 0){
+        if(data.angle[2] != 0){
         // console.log("first" + id);
-        angle += Math.round(data.angle);  //角度を四捨五入
+        angle += Math.round(data.angle[2]);  //角度を四捨五入
         preangle = Math.abs(angle) % 360;
         circleangle = Math.floor(Math.abs(angle) / 360); //360度が何個あるか
         console.log("id:" + id);
