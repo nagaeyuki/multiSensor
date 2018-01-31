@@ -355,7 +355,18 @@ var accele = [0,1,2,3];
                 cube[1].position.x = 100;
                 cube[1].position.y = 100;
                 break;
+                case 2:
+                cube[2].position.x = -100;
+                cube[2].position.y = -100;
+                break;
+                case 3:
+                cube[3].position.x = 100;
+                cube[3].position.y = -100;
+                break;
+
         }
+        
+        
         // x_angle += dt * (newRate - x_bias);
         //    cube[0].rotation.x = X_a;
         //     cube[0].rotation.y = Y_a;
