@@ -90,9 +90,9 @@ function onDiscover(sensorTag) {
 
       console.log(sensorTag.uuid + ':setAccelerometerPeriod');
       sensorTag.on('accelerometerChange', function (x, y, z) {
-        if (bufferAccele[0].length != 100) {
-          preparatioSensor(bufferAccele, aveAccele, x, y, z, 100);
-        }else{
+        // if (bufferAccele[0].length != 100) {
+        //   preparatioSensor(bufferAccele, aveAccele, x, y, z, 100);
+        // }else{
 
 
           
@@ -105,7 +105,7 @@ function onDiscover(sensorTag) {
         console.log("処理後 X: " + x + " Y: " + y + " Z: " + z);
 
 
-        // io.sockets.emit("accele", { x: x, y: y, z: z, sensorIdNumber: deviceList.indexOf(sensorTag.uuid)});
+        io.sockets.emit("accele", { x: x, y: y, z: z, sensorIdNumber: deviceList.indexOf(sensorTag.uuid)});
         // io.sockets.emit("ondata", { x: x, y: y, z: z });
 
         //   // 値がおかしいセンサがあった時の処理
@@ -150,7 +150,7 @@ function onDiscover(sensorTag) {
         //     io.sockets.emit("acceledata", { nowFront: deviceList[sensorTag.uuid].nowFront, sensorIdNumber: deviceList.indexOf(sensorTag.uuid) });
         //   }
         //   deviceList[sensorTag.uuid].beforeFront = deviceList[sensorTag.uuid].nowFront;
-      }
+      // }
       });
 
       sensorTag.setAccelerometerPeriod(accele_interval, function (error) {
@@ -177,17 +177,17 @@ function onDiscover(sensorTag) {
  
 
         if (bufferGyro[0].length != 100) {
-          preparatioSensor(bufferGyro, aveGyro, x, y, z, 100);
+          // preparatioSensor(bufferGyro, aveGyro, x, y, z, 100);
         }else{
 
-          console.log("処理前 X: " + x + " Y: " + y + " Z: " + z);
-          console.log("平均 X: " + aveGyro[0] + " Y: " + aveGyro[1] + " Z: " + aveGyro[2]);
-          var adjust = calibrationSensor(aveGyro,x, y, z);
+          // console.log("処理前 X: " + x + " Y: " + y + " Z: " + z);
+          // console.log("平均 X: " + aveGyro[0] + " Y: " + aveGyro[1] + " Z: " + aveGyro[2]);
+          // var adjust = calibrationSensor(aveGyro,x, y, z);
           var X = x - aveGyro[0] + adjust[0];
           var Y = y - aveGyro[1] + adjust[1];
           var Z = z - aveGyro[2] + adjust[2];
 
-          console.log("処理後 X: " + X + " Y: " + Y + " Z: " + Z);
+          // console.log("処理後 X: " + X + " Y: " + Y + " Z: " + Z);
 
         }
         // console.log(aveGyro);
@@ -319,6 +319,8 @@ function createTwoDimensionalArray(array, average) {
     array[i] = [];
   }
 }
+
+//センサの値を100回取得して個体差誤差を計算
 function preparatioSensor(array, average, X, Y, Z, interval) {
   if (array[0].length < interval) {
     array[0].push(X);
@@ -340,6 +342,8 @@ function preparatioSensor(array, average, X, Y, Z, interval) {
     // console.log(average);
   }
 }
+
+
 function calibrationSensor(average, X, Y, Z){
   // console.log("処理前 X: " + x + " Y: " + y + " Z: " + z);
   // console.log("平均 X: " + average[0] + " Y: " + average[1] + " Z: " + average[2]);

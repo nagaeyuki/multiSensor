@@ -322,9 +322,9 @@ var accele = [0,1,2,3];
         // X_a = Math.atan2(Y, Z);
         // Y_a = Math.atan2(X, Z);
         // Z_a = Math.atan2(X, Y);
-        deviceList[sensorId].X_a = Math.atan(deviceList[sensorId].acceleY, deviceList[sensorId].acceleZ);
-        deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
-        deviceList[sensorId].Z_a = Math.atan(deviceList[sensorId].acceleX, deviceList[sensorId].acceleY);
+        // deviceList[sensorId].X_a = Math.atan(deviceList[sensorId].acceleY, deviceList[sensorId].acceleZ);
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
+        // deviceList[sensorId].Z_a = Math.atan(deviceList[sensorId].acceleX, deviceList[sensorId].acceleY);
         //有力候補2
         // X_a = Math.asin(X, Math.sqrt(Math.pow(Y, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
         //  Y_a = Math.asin(Y, Math.sqrt(Math.pow(X, 2) + Math.pow(Z, 2))) * (180 / Math.PI);
@@ -335,7 +335,93 @@ var accele = [0,1,2,3];
         //  X_a = kirisute(X_a);
         // Y_a = kirisute(Y_a);
         // Z_a = kirisute(Z_a);
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleY/deviceList[sensorId].acceleX);
+        // if (Math.abs(deviceList[sensorId].acceleX)<0.1){
+        //     deviceList[sensorId].acceleX = 0.00000000001;
+        // }
+        // if (Math.abs(deviceList[sensorId].acceleY) < 0.1) {
+        //     deviceList[sensorId].acceleY = 0.00000000002;
+        // }
+        // if (Math.abs(deviceList[sensorId].acceleZ) < 0.1) {
+        //     deviceList[sensorId].acceleZ = 0.00000000003;
+        // }
 
+        // if (Math.abs(deviceList[sensorId].acceleX) < 0.1) {
+        //     deviceList[sensorId].acceleX = 0;
+        // }
+        // if (Math.abs(deviceList[sensorId].acceleY) < 0.1) {
+        //     deviceList[sensorId].acceleY = 0;
+        // }
+        // if (Math.abs(deviceList[sensorId].acceleZ) < 0.1) {
+        //     deviceList[sensorId].acceleZ = 0;
+        // }
+
+        //PDFのやつ　三軸
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleZ/ deviceList[sensorId].acceleY);
+        // deviceList[sensorId].Z_a = Math.acos(deviceList[sensorId].acceleZ / Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleY, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        
+        //PDFのやつ　動きなめらかだけど斜めにしたときの角度がおかしい
+        // deviceList[sensorId].X_a = Math.atan(deviceList[sensorId].acceleX / Math.sqrt(Math.pow(deviceList[sensorId].acceleY, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleY / Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        // deviceList[sensorId].Z_a = Math.atan(Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleY, 2)) / deviceList[sensorId].acceleZ);
+        // deviceList[sensorId].X_a = Math.atan2(deviceList[sensorId].acceleX, Math.sqrt(Math.pow(deviceList[sensorId].acceleY, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleY / Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        // deviceList[sensorId].Z_a = Math.atan2(Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleY, 2)), deviceList[sensorId].acceleZ);
+        // deviceList[sensorId].X_a = 
+        //     Math.atan(deviceList[sensorId].acceleX/deviceList[sensorId].acceleY );
+        // deviceList[sensorId].Y_a = 
+        // Math.atan2(deviceList[sensorId].acceleY,Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        // if ((deviceList[sensorId].acceleY < 0 && deviceList[sensorId].acceleZ < 0) || (deviceList[sensorId].acceleY < 0 && deviceList[sensorId].acceleZ > 0)){
+        //  deviceList[sensorId].X_a =
+        //       (360 + (Math.atan2(deviceList[sensorId].acceleY , deviceList[sensorId].acceleZ))*degree) * radian;
+        // }else{
+        //         deviceList[sensorId].X_a = Math.atan2(deviceList[sensorId].acceleY, deviceList[sensorId].acceleZ);
+        //       }
+        // if ((deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleZ < 0) || (deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleZ > 0)) {
+        //     deviceList[sensorId].Y_a =
+        //         (360 + (Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ)) * degree) * radian;
+        // } else {
+        //     deviceList[sensorId].Y_a = Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
+        // }
+        // if ((deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleY < 0) || (deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleY > 0)) {
+        //     deviceList[sensorId].Z_a =
+        //         (360 + (Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleY)) * degree) * radian;
+        // } else {
+        //     deviceList[sensorId].Z_a = Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleY);
+        // }
+        // deviceList[sensorId].X_a =
+        //     Math.atan2(-0.5, -0.5);
+        // deviceList[sensorId].Y_a =
+        //     Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
+        
+        // if ((deviceList[sensorId].acceleY < 0 && deviceList[sensorId].acceleZ < 0) || (deviceList[sensorId].acceleY < 0 && deviceList[sensorId].acceleZ > 0)) {
+        //     deviceList[sensorId].X_a =
+        //         (360 + (Math.atan2(deviceList[sensorId].acceleY, deviceList[sensorId].acceleZ)) * degree) * radian;
+        // } else {
+        //     deviceList[sensorId].X_a = Math.atan2(deviceList[sensorId].acceleY, deviceList[sensorId].acceleZ);
+        // // }
+        //  if ((deviceList[sensorId].acceleX > 0 && deviceList[sensorId].acceleZ > 0) || (deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleZ > 0)) {
+            // deviceList[sensorId].Y_a = Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
+                 
+        //  } 
+        
+            
+        // if ((deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleY < 0) || (deviceList[sensorId].acceleX < 0 && deviceList[sensorId].acceleY > 0)) {
+        //     deviceList[sensorId].Z_a =
+        //         (360 + (Math.atan2(deviceList[sensorId].acceleX, deviceList[sensorId].acceleY)) * degree) * radian;
+        // } else {
+            
+        // }
+        console.log(Math.sqrt(deviceList[sensorId].acceleX * deviceList[sensorId].acceleX + deviceList[sensorId].acceleY * deviceList[sensorId].acceleY + deviceList[sensorId].acceleZ * deviceList[sensorId].acceleZ));
+        //これ確定っぽい
+        deviceList[sensorId].X_a = Math.atan2(-deviceList[sensorId].acceleX, deviceList[sensorId].acceleZ);
+        //これが違う
+        
+        // deviceList[sensorId].Y_a = Math.atan(deviceList[sensorId].acceleY / Math.sqrt(Math.pow(deviceList[sensorId].acceleX, 2) + Math.pow(deviceList[sensorId].acceleZ, 2)));
+        //これ確定っぽい
+        deviceList[sensorId].Y_a = Math.atan2(-deviceList[sensorId].acceleY , Math.sqrt(Math.pow(deviceList[sensorId].acceleZ, 2) + Math.pow(deviceList[sensorId].acceleX, 2)));
+        // deviceList[sensorId].Y_a = Math.atan2(deviceList[sensorId].acceleY , deviceList[sensorId].acceleZ);
+        // deviceList[sensorId].Z_a = Math.acos(deviceList[sensorId].acceleZ/Math.sqrt(deviceList[sensorId].acceleX * deviceList[sensorId].acceleX + deviceList[sensorId].acceleY * deviceList[sensorId].acceleY + deviceList[sensorId].acceleZ * deviceList[sensorId].acceleZ));
         Akakudox.innerHTML = deviceList[0].X_a * degree;
         Akakudoy.innerHTML = deviceList[0].Y_a * degree;
         Akakudoz.innerHTML = deviceList[0].Z_a * degree;
@@ -395,10 +481,14 @@ var accele = [0,1,2,3];
         // cube[sensorId].rotation.x = angleX;
         // cube[sensorId].rotation.y = angleY;
         // cube[sensorId].rotation.z = angleZ;
+        cube[sensorId].order = "Z-Y-X";
+        
         cube[sensorId].rotation.x = deviceList[sensorId].X_a;
-        cube[sensorId].rotation.y = deviceList[sensorId].Y_a;
-        // cube[sensorId].rotation.z = deviceList[sensorId].Z_a*2;
-        //  cube[sensorId].rotation.y = angleY;
+        cube[sensorId].rotation.y = deviceList[sensorId].Y_a; 
+        // cube[sensorId].rotation.z = deviceList[sensorId].Z_a;
+        //       cube[sensorId].rotation.x = 10*radian;
+        // cube[sensorId].rotation.y = 0;
+
         //  cube[sensorId].rotation.z = angleZ;
         // cube[0].rotation.x = X_a;
         // cube[0].rotation.y = Y_a;
